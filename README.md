@@ -71,7 +71,9 @@
   - jQueryを用いて画像の差し替えを可能にした
   - 商品DBテーブルとは別テーブルのカテゴリーとブランドの初期表示＆編集できるよう実装
   - 商品情報を編集できるのは、商品を投稿したユーザーのみに設定しました。
-<img src="https://user-images.githubusercontent.com/62282502/83148480-fa1f9800-a133-11ea-9b9f-44d4adcedcb2.jpg" width="400px;" />
+  
+<span><img src="https://user-images.githubusercontent.com/62282502/83148480-fa1f9800-a133-11ea-9b9f-44d4adcedcb2.jpg" height="300px;" /></span>
+<span><img src="https://user-images.githubusercontent.com/62282502/83152787-2ab60080-a139-11ea-9dc7-91565ab217ea.gif" height="300px;" /></span>
 
 ### :ballot_box_with_check: DB設計
 <img src="https://user-images.githubusercontent.com/62282502/83140496-2255c980-a129-11ea-8ff3-b9fedfbf8410.png" width="400px;" />
