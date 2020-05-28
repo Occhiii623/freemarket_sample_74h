@@ -1,155 +1,88 @@
 # README
-![logo](https://user-images.githubusercontent.com/62282502/81537903-e096f600-93a8-11ea-83d6-fd819d4ec9f4.png)
+![logo](https://user-images.githubusercontent.com/62282502/83133907-83c46b00-a11e-11ea-900c-3a7130600928.png)
 
-### Chromeのバージョンアップデートでセキュリティ強化された為、現状Basic認証が度々求められる仕様となっています。そのため、ブラウザはSafariにて閲覧ください。
+プログラミングスクールTECH::CAMPの最終課題にて某フリーマーケットサービスのクローンサイトを作成しました。
+約1ヶ月間、４人チームでアジャイル開発を行いました。
 
-### 開発環境
+## 🌐 App URL
 
-* Ruby version
-2.5.1
+### **http://54.168.43.9**
+※Basic認証をかけています。ご覧の際は以下のIDとPassを入力してください。
 
-* Database
-MySQL
+- Basic認証
+  - ID: Yuto-chan
+  - Pass: ppf5p3d
 
-* Rails
-5.2.4.2
+**Chromeのバージョンアップデートでセキュリティ強化された為、現状Basic認証が度々求められる仕様となっています。そのため、ブラウザはSafariにて閲覧ください。**
 
-:green_apple:プログラミングスクールTECH::CAMPの最終課題にて某フリーマーケットサービスのクローンサイトを作成しました。
+## テストユーザー
+- **購入者用アカウント**
+  - メールアドレス: mayumi@gmail.com
+  - パスワード: mayumayu
+- **購入用カード情報**
+  - 番号： 4242424242424242
+  - 期限： 7/25
+  - セキュリティコード：123
+- **出品者用アカウント**
+  - メールアドレス名: test@gmail.com
+  - パスワード: testtest
+　
+## 🔨開発環境
 
-# フリマアプリDB設計
-## usersテーブル
-|Column|Type|Options|
-|------|----|-------|
-|nickname|string|null: false|
-|email|string|null: false, unique: true|
-|password|string|nill: false|
-|firstname|string|null:false|
-|lastname|string|null: false|
-|firstname_kana|string|null: false|
-|lastname_kana|string|null: false|
-|birth_year|integer|null: false|
-|birth_month|integer|null: false|
-|birth_day|integer|null: false|
-### Association
-- has_many :items, dependent: :destroy
-- has_many :comments, dependent: :destroy
-- has_many :likes, dependent: :destroy
-- has_one :profile, dependent: :destroy
-- has_many :addresses, dependent: :destroy
-- has_one :credit_card, dependent: :destroy
+- Ruby 2.5.1
+- Rails 5.2.4.2
+- MySQL
+- Haml/SCSS
+- jQuery
+- VSCode（Visual Studio Code）
+- AWS(EC2/E3)
+- Github
 
-## profilesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|profile_sentence|text||
-|icon_image|text||
-|user|references|null: false, foreign_key: true|
-### Association
-- belongs_to :user
+## Occhiii623の担当箇所
+### :ballot_box_with_check: チームのスクラムマスターを担当
+スクラムマスターとしてスケジュール管理やタスクコントロール、メンバーのヘルパーとしての役割を担当しました。
 
-## credit_cardsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|card_id|string|null: false|
-|customer_id|string|null: false|
-|user|references|null: false, foreign_key: true|
-### Association
-- belongs_to :user
+### :ballot_box_with_check: ユーザー新規登録/ログイン/マイページ(マークアップ/バックエンド)
+- 新規登録する時に、会員情報と住所情報をウィザード形式で入力できるように実装しました。
+- Rspec+FactoryBotを導入し、テストコード作成
+<img src="https://user-images.githubusercontent.com/62282502/83141746-297dd700-a12b-11ea-81e0-daefae491429.gif" width="400px;" />
 
+- ユーザーマイページを作成しました。アイコン画像を設定できます。
+<img src="https://user-images.githubusercontent.com/62282502/83146916-e70bc880-a131-11ea-9f64-382d01d07c9c.gif" width="400px;" />
 
-## addressesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|firstname|string|null: false|
-|lastname|string|null: false|
-|firstname_kana|string|null: false|
-|lastname_kana|string|null: false|
-|postal_code|integer|null: false, limit: 8|
-|prefectures|string|null: false|
-|city|string|null: false|
-|house_number|string|null: false|
-|building_name|string||
-|telephone_number|string||
-|user|references|null: false, foreign_key: true|
-### Association
-- belongs_to :user
+### :ballot_box_with_check: 出品商品一覧新着表示機能(バックエンド)
+- トップページに新着順に商品が一覧表示されています。
+- コントローラーに、出品した商品が新着順に8件表示されるように実装
+<img src="https://user-images.githubusercontent.com/62282502/83145946-88921a80-a130-11ea-90ce-81f3d68dbe09.jpg" width="400px;" />
 
-## sns_credentialsテーブル（SNS認証）
-|Column|Type|Options|
-|------|----|-------|
-|provider|string|null: false| 
-|uid|integer|null:false, unique: true|
-|token|text||
-|user|references|null: false, foreign_key: true|
-### Association
-- belongs_to :user
+### :ballot_box_with_check: 商品詳細表示/削除機能(バックエンド)
+- 商品出品時に登録した情報が見られる詳細表示機能です。詳細画面からの削除機能も実装しました。
+  - jQueryを用いた動的な画像表示の実装
+  - 出品者にしか商品の情報編集・削除のリンクが踏めない&アクセスできないようにしています
+  - 出品者以外にしか商品購入のリンクが踏めないようにしています
 
-## itemsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|explanation|text|null: false|
-|price|integer|null: false|
-|category|references|null: false, foreign_key: true|
-|brand|references|foreign_key: true|
-|item_status|string|null: false|
-|postage_type|string|null: false|
-|postage_burden|string|null: false|
-|shipping_area|string|null: false|
-|shipping_date|string|null: false|
-|user|references|null: false, foreign_key: true|
-### Association
-- belongs_to :user  
-- has_many :comments, dependent: :destroy
-- has_many :likes, dependent: :destroy
-- has_many :images, dependent: :destroy
-- belongs_to :category
-- belongs_to :brand
-- belongs_to_active_hash :item_condition  
-- belongs_to_active_hash :postage_type  
-- belongs_to_active_hash :postage_burden  
-- belongs_to_active_hash :shipping_date
+### :ballot_box_with_check: 出品時のカテゴリー登録機能実装(バックエンド)
+- "ancestry"というgemを導入
+- 出品時にjQueryで動的にカテゴリー選択し、登録できるようにしました。
+<img src="https://user-images.githubusercontent.com/62282502/83147592-dd369500-a132-11ea-979d-74b14773c05a.gif" width="400px;" />
 
-## categoriesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|ancestry|string||
-### Association
-- has_many: items
+### :ballot_box_with_check: 商品編集機能(バックエンド)
+- 出品した商品の情報を編集する機能
+  - jQueryを用いて画像の差し替えを可能にした
+  - 商品DBテーブルとは別テーブルのカテゴリーとブランドの初期表示＆編集できるよう実装
+  - 商品情報を編集できるのは、商品を投稿したユーザーのみに設定しました。
+<img src="https://user-images.githubusercontent.com/62282502/83148480-fa1f9800-a133-11ea-9b9f-44d4adcedcb2.jpg" width="400px;" />
 
-## brandsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-### Association
-- has_many :items
+### :ballot_box_with_check: DB設計
+<img src="https://user-images.githubusercontent.com/62282502/83140496-2255c980-a129-11ea-8ff3-b9fedfbf8410.png" width="400px;" />
 
-## imagesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|image|string|null: false|
-|item|references|null: false, foreign_key: true|
-### Association
-- belongs_to :item
+### :star: 開発を通じて工夫したポイント
 
-## likesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user|references|null: false, foreign_key: true|
-|item|references|null: false, foreign_key: true|
-### Association
-- belongs_to :user
-- belongs_to :item
+1. **チームとして工夫を行った点**
 
-## commentsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user|references|null: false, foreign_key: true|
-|item|references|null: false, foreign_key: true|
-|comment|text|null: false|
-### Association
-- belongs_to :user
-- belongs_to :item
+　４名と通常よりも少ないチーム人数での開発であり、なおかつ完全オンラインで進める形であったため、「いつまでに何を終わらせるか」の目標を各自決め、一日のミーテティング回数を3回と他チームよりも多く設けて互いの進捗を頻繁に共有するよう意識しました。進捗が厳しければ他メンバーがフォローに入るように意識していました。結果、手が空いたメンバーがいれば適時ヘルプに入れるようにできたため、完成目標日までに必須実装項目を完了させることができました。
 
+2. **個人として工夫を行った点**
+
+　チームメンバーが一人も欠けることなくアプリを完成させることを目標に、スクラムマスターとしてメンバーがエラー等に躓いている点があれば率先してヘルプに入り、チーム内で助け合える雰囲気作りを意識しました。
 
