@@ -11,8 +11,8 @@
 
 - Basic認証
   - ID: Yuto-chan
-  - Pass: ppf5p3d
-
+  - Pass: ppf5p3dn
+  
 **Chromeのバージョンアップデートでセキュリティ強化された為、現状Basic認証が度々求められる仕様となっています。そのため、ブラウザはSafariにて閲覧ください。**
 
 ## テストユーザー
